@@ -16,9 +16,7 @@
         -->
 
         <!-- compiled CSS -->
-        <% styles.forEach( function ( file ) { %>
-        <link rel="stylesheet" type="text/css" href="<%= file %>">
-        <% }); %>
+        <!-- inject:css --><!-- endinject -->
         
         <!-- Modernizr -->
         <script type="text/javascript" src="/assets/js/modernizr.custom.25376.js"></script>
@@ -29,8 +27,6 @@
         </ng-view>
         
         <!-- compiled JavaScript -->
-        <% scripts.forEach( function ( file ) { %>
-            <script type="text/javascript" src="<%= file %>"></script>
-        <% }); %>
+        <!-- inject:js --><!-- endinject -->
     </body>
 </html>
