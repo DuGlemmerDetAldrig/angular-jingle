@@ -1,0 +1,29 @@
+{
+  "name": "angular-jingle",
+  "version": "0.0.1",
+  "authors": [
+    "DuGlemmerDetAldrig.dk ApS & Beneath ApS"
+  ],
+  "description": "Ultra-Simple Angular Boilerplate",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.14",
+    "jquery": "1.11.0",
+    "angular-animate": "~1.2.14",
+    "angular-resource": "~1.2.14"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.14"
+  }
+}
