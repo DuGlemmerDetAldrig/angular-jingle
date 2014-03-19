@@ -110,14 +110,13 @@ gulp.task('less', ['clean'], function(){
  */
 gulp.task('build-js', ['clean'], function(){
 	return es.concat(
+		plugins.bowerFiles()
+    		.pipe(plugins.flatten()),
 		gulp.src(config.app_files.js, {base: './src'})
-			.pipe(plugins.if(isRelease, plugins.uglify()))
-			.pipe(plugins.if(isRelease, plugins.concat("main.js")))
-	    	.pipe(gulp.dest(out_dir)),
-	    plugins.bowerFiles()
-	    	.pipe(plugins.flatten())
-    		.pipe(gulp.dest(out_dir + '/vendor'))
-    );
+    )
+    .pipe(plugins.concat("main.js"))
+    .pipe(plugins.if(isRelease, plugins.uglify()))
+    .pipe(gulp.dest(out_dir + '/assets/js'));
 });
 
 /**
@@ -127,7 +126,7 @@ gulp.task('build-js', ['clean'], function(){
  * part of the initial payload as one JavaScript file. Neat!
  */
 gulp.task('html2js', ['clean'], function(){
-var fileName = "templates-app" + (isRelease ? ".min" : "" ) + ".js";
+	var fileName = "templates-app" + (isRelease ? ".min" : "" ) + ".js";
 	return gulp.src(config.app_files.tpl)
 		.pipe(plugins.minifyHtml({
 	        empty: true,
