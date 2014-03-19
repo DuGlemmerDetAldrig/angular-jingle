@@ -159,6 +159,11 @@ gulp.task('index', ['less', 'build-js'], function(){
 				ignorePath: out_dir
 			}
 		))
+		.pipe(plugins.if(isRelease, plugins.minifyHtml({
+	        empty: true,
+	        spare: true,
+	        quotes: true
+	    })))
 		.pipe(gulp.dest(out_dir));
 });
 
