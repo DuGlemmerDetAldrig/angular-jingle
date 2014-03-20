@@ -4,7 +4,6 @@ var gulp = require('gulp'),
 	path = require('path'),
 	plugins = require("gulp-load-plugins")();
 
-console.log(plugins);
 /**
 -- JSHINT --
 stuff
@@ -110,10 +109,10 @@ gulp.task('less', ['clean'], function(){
  * The `build_js` target concatenates compiled CSS and vendor CSS
  * together.
  */
-gulp.task('build-js', ['clean'], function(){
+gulp.task('build-js', ['clean', 'html2js'], function(){
 	return es.concat(
-		plugins.bowerFiles()
-    		.pipe(plugins.flatten()),
+		plugins.bowerFiles().pipe(plugins.flatten()),
+		gulp.src(out_dir + '/assets/js/templates-*.js'),
 		gulp.src(config.app_files.js, {base: './src'})
     )
     .pipe(plugins.concat("main.js"))
@@ -141,7 +140,7 @@ gulp.task('html2js', ['clean'], function(){
 		}))
     	.pipe(plugins.concat(fileName))
 	    .pipe(plugins.if(isRelease, plugins.uglify()))
-	    .pipe(gulp.dest(out_dir));
+	    .pipe(gulp.dest(out_dir + '/assets/js'));
 });
 
 /**
@@ -149,7 +148,7 @@ gulp.task('html2js', ['clean'], function(){
  */
 gulp.task('index', ['less', 'build-js'], function(){
 	var cssStream = gulp.src(out_dir + '/assets/css/*.css', {read: false});
-	var jsStream = gulp.src(out_dir + '/**/*.js', {read: false});
+	var jsStream = gulp.src(out_dir + '/assets/js/main*.js', {read: false});
 
 	return gulp.src(config.app_files.html)
 		.pipe(plugins.inject(

@@ -35,7 +35,7 @@ angular.module('angularJingle', [
 	$urlRouterProvider.otherwise('/');
 })
 
-.run(function ($rootScope, $location, $window, $http, User, Facebook, FbLoad, $state, $stateParams) {
+.run(function ($http) {
 	// Enable credientials (ie. cookies etc.) through the $http Angular Service
 	$http.defaults.withCredentials = true;
 })
