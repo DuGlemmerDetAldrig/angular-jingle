@@ -81,6 +81,8 @@ gulp.task('copy-assets', ['clean'], function(){
 		gulp.src(config.app_files.images, {base: base})
 			.pipe(gulp.dest(out_dir + '/assets')),
 		gulp.src(config.app_files.fonts, {base: base})
+			.pipe(gulp.dest(out_dir + '/assets')),
+		gulp.src(config.app_files.js_static, {base: base})
 			.pipe(gulp.dest(out_dir + '/assets'))
 	);
 });
